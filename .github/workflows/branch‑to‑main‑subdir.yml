@@ -1,0 +1,82 @@
+name: Sync branch into main subdirectory
+
+on:
+  # Manual trigger from the Actions tab
+  workflow_dispatch:
+    inputs:
+      target_branch:
+        description: "Branch to sync (leave blank to sync the branch that triggered the workflow)"
+        required: false
+        default: ""
+
+  # Any push that is NOT main
+  push:
+    branches-ignore:
+      - main
+
+  # Any new branch creation
+  create:
+    branches:
+      - '**'
+
+# Allow this workflow to write to the repo
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    # Skip if somehow we’re on main already
+    if: github.ref_type == 'branch' && github.ref_name != 'main' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Check out the branch that triggered the workflow
+      - name: Checkout source branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # we’ll need the full history for branch switches
+
+      # 2️⃣ Work out which branch we’re syncing
+      - name: Determine branch name
+        id: vars
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ -n "${{ github.inputs.target_branch }}" ]; then
+            echo "branch=${{ github.inputs.target_branch }}" >> $GITHUB_OUTPUT
+          else
+            echo "branch=${GITHUB_REF#refs/heads/}" >> $GITHUB_OUTPUT
+          fi
+
+      # 3️⃣ Stash this branch’s files in a temp folder (minus .git crud)
+      - name: Copy workspace to temp
+        run: |
+          rsync -a --delete --exclude='.git' --exclude='.github' ./ /tmp/artifact/
+
+      # 4️⃣ Switch to main, pull latest, nuke old copy of subdir (if any), drop in new
+      - name: Sync into main
+        run: |
+          BRANCH="${{ steps.vars.outputs.branch }}"
+
+          # Make sure we’ve got main locally
+          git fetch origin main
+          git checkout main
+          git pull --ff-only
+
+          # Replace (or create) the branch subdir
+          rm -rf "$BRANCH"
+          mkdir -p "$BRANCH"
+          rsync -a /tmp/artifact/ "$BRANCH/"
+
+          # Stage changes
+          git add "$BRANCH"
+
+          # Bail if nothing changed
+          if git diff --cached --quiet; then
+            echo "No changes to commit — exiting."
+            exit 0
+          fi
+
+          # Commit & push
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: sync branch '$BRANCH' into /$BRANCH on main"
+          git push origin main
