@@ -1,0 +1,64 @@
+<!DOCTYPE html> 
+<html lang='en-US' xml:lang='en-US'> 
+<head><title></title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='main.css' rel='stylesheet' type='text/css' /> 
+<meta content='main.tex' name='src' /> 
+<script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
+<script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
+</head><body>
+<div class='tcolorbox tcolorbox' id='tcolobox-1'>     
+<div class='tcolorbox-title'>
+<!-- l. 43 --><p class='noindent'><span class='rm-lmbx-12'>Problem</span></p></div> 
+<div class='tcolorbox-content'><!-- l. 38 --><p class='noindent'>Let <span class='mathjax-inline'>\(\Omega \)</span> be an open subset of <span class='mathjax-inline'>\(\mathbb {C}\)</span>. Suppose <span class='mathjax-inline'>\(f\)</span> is a meromorphic function on <span class='mathjax-inline'>\(\Omega \)</span>
+having exactly one zero at <span class='mathjax-inline'>\(z_0\)</span> and exactly one pole at <span class='mathjax-inline'>\(z_1\)</span>. Further, <span class='mathjax-inline'>\(m\)</span> is the
+order of zero at <span class='mathjax-inline'>\(z_0\)</span> and <span class='mathjax-inline'>\(n\)</span> is the order of the pole at <span class='mathjax-inline'>\(z_1\)</span>. If <span class='mathjax-inline'>\(g : \Omega \to \mathbb {C}\)</span> is analytic and <span class='mathjax-inline'>\(D\)</span> is
+an open disc with center <span class='mathjax-inline'>\(a\)</span> and radius <span class='mathjax-inline'>\(r\)</span> such that <span class='mathjax-inline'>\(z_0, z_1 \in D\)</span> and <span class='mathjax-inline'>\(D \subset \Omega \)</span>, then show that </p><div class='mathjax-block'>\[ \frac {1}{2\pi i} \int _\gamma \frac {f'(z)}{f(z)} g(z)\, dz = m g(z_0) - n g(z_1), \]</div>
+where <span class='mathjax-inline'>\(\gamma (t) = a + r e^{2\pi i t}\)</span> for <span class='mathjax-inline'>\(0 \le t \le 1\)</span>.  
+</div> 
+</div>
+<div class='tcolorbox tcolorbox' id='tcolobox-6'>     
+<div class='tcolorbox-title'>
+<!-- l. 124 --><p class='noindent'><span class='rm-lmbx-12'>Solution</span></p></div> 
+<div class='tcolorbox-content'><!-- l. 50 --><p class='noindent'>We apply the residue theorem to the meromorphic function <span class='mathjax-inline'>\(\displaystyle \frac {f'}{f}g\)</span>.
+</p>
+<div class='tcolorbox tcolorbox' id='tcolobox-2'>     
+<div class='tcolorbox-title'>
+<!-- l. 70 --><p class='noindent'><span class='rm-lmbx-12'>Step 1: Behavior of </span><span class='mathjax-inline'>\(\dfrac {f'}{f}\) </span><span class='rm-lmbx-12'>at zeros and
+poles</span></p></div> 
+<div class='tcolorbox-content'><!-- l. 54 --><p class='noindent'>Suppose <span class='mathjax-inline'>\(f\)</span> has a zero of order <span class='mathjax-inline'>\(m\)</span> at <span class='mathjax-inline'>\(z_0\)</span>. Then in a neighborhood of <span class='mathjax-inline'>\(z_0\)</span>,
+we can write </p><div class='mathjax-block'>\[ f(z) = (z-z_0)^m h(z), \]</div> where <span class='mathjax-inline'>\(h(z)\)</span> is analytic and <span class='mathjax-inline'>\(h(z_0) \neq 0\)</span>. Differentiating, <div class='mathjax-block'>\[ f'(z) = m(z-z_0)^{m-1}h(z) + (z-z_0)^m h'(z), \]</div> so <div class='mathjax-block'>\[ \frac {f'(z)}{f(z)} = \frac {m}{z-z_0} + \frac {h'(z)}{h(z)}. \]</div> Hence,
+<span class='mathjax-inline'>\(\dfrac {f'}{f}\)</span> has a simple pole at <span class='mathjax-inline'>\(z_0\)</span> with residue <div class='mathjax-block'>\[ \operatorname {Res}_{z=z_0} \frac {f'(z)}{f(z)} = m. \]</div>  
+</div> 
+</div>
+<div class='tcolorbox tcolorbox' id='tcolobox-3'>     
+<div class='tcolorbox-title'>
+<!-- l. 90 --><p class='noindent'><span class='rm-lmbx-12'>Step 2: Behavior at poles</span></p></div> 
+<div class='tcolorbox-content'><!-- l. 74 --><p class='noindent'>Suppose <span class='mathjax-inline'>\(f\)</span> has a pole of order <span class='mathjax-inline'>\(n\)</span> at <span class='mathjax-inline'>\(z_1\)</span>. Then in a neighborhood of <span class='mathjax-inline'>\(z_1\)</span>,
+we can write </p><div class='mathjax-block'>\[ f(z) = \frac {1}{(z-z_1)^n}k(z), \]</div> where <span class='mathjax-inline'>\(k(z)\)</span> is analytic and <span class='mathjax-inline'>\(k(z_1) \neq 0\)</span>. Differentiating, <div class='mathjax-block'>\[ f'(z) = -\frac {n}{(z-z_1)^{n+1}}k(z) + \frac {1}{(z-z_1)^n}k'(z), \]</div> so <div class='mathjax-block'>\[ \frac {f'(z)}{f(z)} = \frac {-n}{z-z_1} + \frac {k'(z)}{k(z)}. \]</div> Hence,
+<span class='mathjax-inline'>\(\dfrac {f'}{f}\)</span> has a simple pole at <span class='mathjax-inline'>\(z_1\)</span> with residue <div class='mathjax-block'>\[ \operatorname {Res}_{z=z_1} \frac {f'(z)}{f(z)} = -n. \]</div>  
+</div> 
+</div>
+<div class='tcolorbox tcolorbox' id='tcolobox-4'>     
+<div class='tcolorbox-title'>
+<!-- l. 113 --><p class='noindent'><span class='rm-lmbx-12'>Step 3: Apply residue theorem</span></p></div> 
+<div class='tcolorbox-content'><!-- l. 94 --><p class='noindent'>The function <span class='mathjax-inline'>\(\dfrac {f'}{f}g\)</span> is meromorphic on <span class='mathjax-inline'>\(D\)</span>, and its only singularities inside
+<span class='mathjax-inline'>\(\gamma \)</span> are at <span class='mathjax-inline'>\(z_0\)</span> and <span class='mathjax-inline'>\(z_1\)</span>. By the Cauchy residue theorem, </p><div class='mathjax-block'>\[ \frac {1}{2\pi i} \int _\gamma \frac {f'(z)}{f(z)}g(z)\, dz = \sum _{z \in \{z_0, z_1\}} \operatorname {Res}_{z}\left [\frac {f'(z)}{f(z)}g(z)\right ]. \]</div>
+<!-- l. 100 --><p class='noindent'>At <span class='mathjax-inline'>\(z_0\)</span>: </p><div class='mathjax-block'>\[ \operatorname {Res}_{z=z_0}\left [\frac {f'(z)}{f(z)}g(z)\right ] = \lim _{z\to z_0} (z-z_0)\frac {f'(z)}{f(z)}g(z) = m g(z_0). \]</div>
+<!-- l. 107 --><p class='noindent'>At <span class='mathjax-inline'>\(z_1\)</span>: </p><div class='mathjax-block'>\[ \operatorname {Res}_{z=z_1}\left [\frac {f'(z)}{f(z)}g(z)\right ] = \lim _{z\to z_1} (z-z_1)\frac {f'(z)}{f(z)}g(z) = -n g(z_1). \]</div>  
+</div> 
+</div>
+<div class='tcolorbox tcolorbox' id='tcolobox-5'>     
+<div class='tcolorbox-title'>
+<!-- l. 122 --><p class='noindent'><span class='rm-lmbx-12'>Final Answer</span></p></div> 
+<div class='tcolorbox-content'><div class='mathjax-block'>\[ \boxed { \frac {1}{2\pi i} \int _\gamma \frac {f'(z)}{f(z)}g(z)\, dz = m g(z_0) - n g(z_1) } \]</div>  
+</div> 
+</div>
+ 
+</div> 
+</div>
+ 
+</body> 
+</html>

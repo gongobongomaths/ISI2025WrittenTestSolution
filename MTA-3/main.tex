@@ -1,0 +1,126 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm, xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{lmodern}
+\usepackage{titlesec}
+
+% Define custom colors
+\definecolor{problemcol}{HTML}{FFFAE3}
+\definecolor{solutioncol}{HTML}{E8F8F5}
+\definecolor{stepcol}{HTML}{F6DDCC}
+\definecolor{finalcol}{HTML}{EAF2F8}
+\definecolor{darkborder}{HTML}{2C3E50}
+
+% Styling for titles
+\titleformat{\section}{\large\bfseries\sffamily\color{darkborder}}{}{0em}{}
+\titleformat{\subsection}{\bfseries\sffamily\color{darkborder}}{}{0em}{}
+
+% General tcolorbox styling
+\tcbset{
+    enhanced,
+    breakable,
+    boxrule=0.8pt,
+    arc=3mm,
+    auto outer arc,
+    colframe=darkborder,
+    coltitle=black,
+    fonttitle=\bfseries\sffamily,
+    drop shadow
+}
+
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+% Problem Box
+\begin{tcolorbox}[colback=problemcol, title=\textbf{Problem}]
+Let $\Omega$ be an open subset of $\mathbb{C}$. Suppose $f$ is a meromorphic function on $\Omega$ having exactly one zero at $z_0$ and exactly one pole at $z_1$. Further, $m$ is the order of zero at $z_0$ and $n$ is the order of the pole at $z_1$. If $g : \Omega \to \mathbb{C}$ is analytic and $D$ is an open disc with center $a$ and radius $r$ such that $z_0, z_1 \in D$ and $D \subset \Omega$, then show that
+\[
+\frac{1}{2\pi i} \int_\gamma \frac{f'(z)}{f(z)} g(z)\, dz = m g(z_0) - n g(z_1),
+\]
+where $\gamma(t) = a + r e^{2\pi i t}$ for $0 \le t \le 1$.
+\end{tcolorbox}
+
+\vspace{1em}
+
+% Solution Box
+\begin{tcolorbox}[colback=solutioncol, title=\textbf{Solution}]
+
+We apply the residue theorem to the meromorphic function $\displaystyle \frac{f'}{f}g$.
+
+% Step 1
+\begin{tcolorbox}[colback=stepcol, title=\textbf{Step 1: Behavior of \boldmath$\dfrac{f'}{f}$ at zeros and poles}, breakable]
+Suppose $f$ has a zero of order $m$ at $z_0$. Then in a neighborhood of $z_0$, we can write
+\[
+f(z) = (z-z_0)^m h(z),
+\]
+where $h(z)$ is analytic and $h(z_0) \neq 0$. Differentiating,
+\[
+f'(z) = m(z-z_0)^{m-1}h(z) + (z-z_0)^m h'(z),
+\]
+so
+\[
+\frac{f'(z)}{f(z)} = \frac{m}{z-z_0} + \frac{h'(z)}{h(z)}.
+\]
+Hence, $\dfrac{f'}{f}$ has a simple pole at $z_0$ with residue
+\[
+\operatorname{Res}_{z=z_0} \frac{f'(z)}{f(z)} = m.
+\]
+\end{tcolorbox}
+
+% Step 2
+\begin{tcolorbox}[colback=stepcol, title=\textbf{Step 2: Behavior at poles}, breakable]
+Suppose $f$ has a pole of order $n$ at $z_1$. Then in a neighborhood of $z_1$, we can write
+\[
+f(z) = \frac{1}{(z-z_1)^n}k(z),
+\]
+where $k(z)$ is analytic and $k(z_1) \neq 0$. Differentiating,
+\[
+f'(z) = -\frac{n}{(z-z_1)^{n+1}}k(z) + \frac{1}{(z-z_1)^n}k'(z),
+\]
+so
+\[
+\frac{f'(z)}{f(z)} = \frac{-n}{z-z_1} + \frac{k'(z)}{k(z)}.
+\]
+Hence, $\dfrac{f'}{f}$ has a simple pole at $z_1$ with residue
+\[
+\operatorname{Res}_{z=z_1} \frac{f'(z)}{f(z)} = -n.
+\]
+\end{tcolorbox}
+
+% Step 3
+\begin{tcolorbox}[colback=stepcol, title=\textbf{Step 3: Apply residue theorem}, breakable]
+The function $\dfrac{f'}{f}g$ is meromorphic on $D$, and its only singularities inside $\gamma$ are at $z_0$ and $z_1$. By the Cauchy residue theorem,
+\[
+\frac{1}{2\pi i} \int_\gamma \frac{f'(z)}{f(z)}g(z)\, dz
+= \sum_{z \in \{z_0, z_1\}} \operatorname{Res}_{z}\left[\frac{f'(z)}{f(z)}g(z)\right].
+\]
+
+At $z_0$:
+\[
+\operatorname{Res}_{z=z_0}\left[\frac{f'(z)}{f(z)}g(z)\right]
+= \lim_{z\to z_0} (z-z_0)\frac{f'(z)}{f(z)}g(z)
+= m g(z_0).
+\]
+
+At $z_1$:
+\[
+\operatorname{Res}_{z=z_1}\left[\frac{f'(z)}{f(z)}g(z)\right]
+= \lim_{z\to z_1} (z-z_1)\frac{f'(z)}{f(z)}g(z)
+= -n g(z_1).
+\]
+\end{tcolorbox}
+
+% Final Answer
+\begin{tcolorbox}[colback=finalcol, colframe=black, title=\textbf{Final Answer}]
+\[
+\boxed{
+\frac{1}{2\pi i} \int_\gamma \frac{f'(z)}{f(z)}g(z)\, dz = m g(z_0) - n g(z_1)
+}
+\]
+\end{tcolorbox}
+
+\end{tcolorbox}
+
+\end{document}
